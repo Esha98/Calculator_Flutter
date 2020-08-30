@@ -82,9 +82,34 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
       height: MediaQuery.of(context).size.height * 0.1 * btnHeight,
       color: btnColor,
       child: FlatButton(
+          shape:RoundedRectangleBorder(),
+          padding: EdgeInsets.all(16.0),
+          onPressed: () => buttonPressed(btnText), child: Text(btnText, style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.normal, color:btntextColor),)),
+    );
+  }
+
+  Widget equalButton(String btnText, Color btntextColor, double btnHeight) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.1 * btnHeight,
+      decoration: BoxDecoration(
+//          borderRadius: BorderRadius.only(
+//              topLeft: Radius.circular(25.0),
+//              bottomRight: Radius.circular(25.0))
+        borderRadius: BorderRadius.all(
+            Radius.circular(25.0)
+        ),
+        gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment(-1.0,-1.0),
+            colors: [
+              Colors.orangeAccent,
+              Colors.pinkAccent,
+            ]
+        )
+      ),
+      child: FlatButton(
           shape:RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(0.0),
-//            side: BorderSide(color: Colors.white, width: 1, style: BorderStyle.solid),
+//            borderRadius: BorderRadiusGeometry()
           ),
           padding: EdgeInsets.all(16.0),
           onPressed: () => buttonPressed(btnText), child: Text(btnText, style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.normal, color:btntextColor),)),
@@ -191,7 +216,7 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
 
                   TableRow(
                     children: [
-                      buildButton("=", wtColor, 2, Colors.pinkAccent)
+                      equalButton("=", wtColor, 2)
                     ],
                   )
 
